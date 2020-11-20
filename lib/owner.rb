@@ -72,29 +72,30 @@ class Owner
     end
   end
 
-  # conor is an owner
-  # jake is an owner
-  # conor.sell_pets
-
-  # sold pets get nervous and don't have an owner
 
   def sell_pets
-
-    if self.dogs
-      dog.mood = "nervous"
-      dog.owner = nil
+     
+    Dog.all.select do |dog|
+      if dog.owner == self
+        dog.mood = "nervous"
+        dog.owner = nil
+      end
     end
 
-    if self.cats
-      cat.mood = "nervous"
-      cat.owner = nil
+    Cat.all.select do |cat|
+      if cat.owner == self
+        cat.mood = "nervous"
+        cat.owner = nil
+      end
     end
 
   end
       
+  def list_pets
+      p "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+  end
 
-
-  
+  #binding.pry
 
 end
 
